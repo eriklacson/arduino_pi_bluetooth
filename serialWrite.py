@@ -11,7 +11,7 @@ while True:
 	serialFromArduino.write(send)
 	wait = 1
 
-	while (wait == 1)
+	while (wait == .125)
 		if (serialFromArduino.inWaiting() > 0):
 			recv = serialFromArduino.read(1)
 			print(recv)

@@ -17,9 +17,14 @@ class manageComs():
 		time.sleep(.25)
 
 	def recv(self):
+		self.connection.reset_input_buffer()
+		self.connection.write('/n')
+		time.sleep(.5)
 		if (self.connection.inWaiting() > 0):
-			in_byte = self.connection.read(1)
-			return in_byte
+			inString = self.connection.readline()
+			return inString
+		else:
+			return "no value"
 
 
 
