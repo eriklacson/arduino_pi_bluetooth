@@ -8,15 +8,13 @@ serialFromArduino = serial.Serial(com_settings.port)
 
 
 def run():
-
 	while True:
-	 	input_value = raw_input("Enter a character: ")
-	 	send = input_value + '\n'
+		send = raw_input("enter a value from 1 to 255: ")
+		serialFromArduino.reset_input_buffer()
 		serialFromArduino.write(send)
-		print "Sent from Raspberry Pi " + send
-		time.sleep(.25)
+		time.sleep(.175)
 
 		if (serialFromArduino.inWaiting() > 0):
 			input = serialFromArduino.readline()
-			print "Received from Arduino: " + input	
+			print "Potentiometer state: " + input	
 run()
