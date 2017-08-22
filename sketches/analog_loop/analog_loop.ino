@@ -21,8 +21,8 @@ void setup() {
  
 void loop() {
 
-// Wait for serial input:
-  while (Serial.available() > 0) {
+  // check for incoming data
+  if(Serial.available() > 0) {
 
     // read serial input
     int inChar = Serial.read();
@@ -31,25 +31,31 @@ void loop() {
     if (isDigit(inChar)) {
            
       // convert the incoming byte to a char and add it to the string:
-      inString += (char)inChar;
-    
-    }
+      inString += (char)inChar;  
+      }
 
     // if you get a newline, process serial output
-    if (inChar == '\n') {
 
-      inVal = analogRead(POT); //get raw potentiometer value
-      outVal = map(inVal,0,1200,0,255); //map raw value to analog output range (0-255)
- 
-      //send serial status messages (delete after testing with serial monitor)
-      Serial.println(outVal);
-
+    // check if incoming byte is '\n'
+    else if (inChar == '\n') {
+            
+      analogWrite(LED,inString.toInt()); //light up LED        
+      inString = ""; //clear string buffer
       
-      analogWrite(LED,inString.toInt());        
-      inString = "";
+      }
+      
+    delay(1); //wait for the the port clear
 
     }
-  }
+
+   // if there no incoming data 
+   else {
+
+    inVal = analogRead(POT); //get raw potentiometer value
+    outVal = map(inVal,0,1200,0,255); //map raw value to analog output range (0-255)
+    Serial.println(outVal);//send output value to serial port
+    
+    } 
   
 }
      
