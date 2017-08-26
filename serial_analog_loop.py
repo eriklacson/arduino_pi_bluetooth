@@ -4,15 +4,25 @@ import serial
 
 com_settings = Settings()
 
-serialFromArduino = serial.Serial(com_settings.port)
+serial_1 = serial.Serial(com_settings.port)
 
 
 def run():
+	
+	//program loop
 	while True:
 		
-		if (serialFromArduino.inWaiting() > 0):
-			input = serialFromArduino.readline()
+		//check for digital value
+		serial_1.write('d')
+		if (serial_1.inWaiting() > 0):
+			incoming = serial_1.read()
 			print input
-			serialFromArduino.write(input)
-	
+
+		//check for analogy value
+
+		//send digital value
+
+		//send analog value
+
+
 run()

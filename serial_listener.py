@@ -13,6 +13,6 @@ def run():
 	while True:
 		#wait for incoming data from the serial port
 		if (serialFromArduino.inWaiting() > 0):
-			input = serialFromArduino.readline()
+			input = serialFromArduino.read()
 			print input 
 run()
