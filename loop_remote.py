@@ -31,6 +31,20 @@ def run():
 			if (digital_in == '1'):
 				serial_0.write('c1');
 			elif (digital_in == '0'):
-				serial_0.write('c0');	
+				serial_0.write('c0');
+				#send request for analog value
+						
+		serial_1.write('b')
+		#wait for respponse
+		if (serial_1.inWaiting() > 0):
+			analog_in = serial_1.read() #read response
+			print "analog: " + analog_in #test print
 
-run() 
+			#handle response
+			#
+			#clear serial buffer
+			serial_0.reset_output_buffer()
+			#send analog value
+			analog_out = 'd' + str(analog_in)
+			serial_0.write(analog_out)		
+run()
