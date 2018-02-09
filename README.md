@@ -1,6 +1,1 @@
-# This set of code demonstrates communication from a Raspberry Pi on an Arduino 
-# device via serial connection over Bluetooth. It's currently a work in progress 
-# and this file serves as a to-do list
-
-- Create analog feed back loop on the host Python application
-- Establish connection over bluetooth using sample use cases
+This set of code demonstrates how to build simple bluetooh devices controller devices for the Raspberry Pi with Arduino. It uses Bluetooh Serial Protocol and communicates using PySerial.
